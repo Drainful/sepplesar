@@ -1,3 +1,2 @@
 build:
-	mkdir ./bin/ -p
-	clang++ ./src/main.cpp -o ./bin/main
+	clang++ ./src/main.cpp `pkg-config --libs opencv` -o main
