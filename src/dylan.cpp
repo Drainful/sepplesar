@@ -1,11 +1,11 @@
 #include <iostream>
+#include <string>
 #include <opencv2/opencv.hpp>
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-    cout << "Hello, World!\n";
-    const char* grades = " ABCDF";
-    cout << grades[argc];
+    cerr << "Hello";
     return 0;
 }
+
