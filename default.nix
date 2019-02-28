@@ -5,6 +5,7 @@ with import <nixpkgs> {};
     buildInputs = [
       clang_6
       opencv
+      pkgconfig
     ];
   };
 }
