@@ -1,23 +1,48 @@
 #include <iostream>
 #include <string>
 #include <opencv2/opencv.hpp>
+
+//#include "dylan.hpp"
+
 using namespace std;
 using namespace cv;
 
-int main(int argc, char* argv[])
+/*
+ *  A contour is a boundary of an object.  Contours are closed figures.
+ *  An edge is border, they are not closed. Edge is point of significant difference between 
+ *  neighboring pixels.
+ */
+void find_contour()
 {
-    
-    return 0;
+    return;
 }
 
-int roi()
+int rect_region()
 {
-    Mat img;
-    img = imread("test.jpg");
-    img = Scalar(0);
+    // rectangle constructor
+    // r( int x, int y, int width, int height )
+    // x,y is the top-left(?) corner
+    
+    // blacks an image
+    // Mat img;
+    // img = Scalar(0);
+    
+    Mat img = imread("src/test.jpg");
+    imshow("test", img);
+    waitKey();
 
-    Rect r( 10, 12, 100, 100 );
-    Mat smallImg = img(r);
+    Rect r( 150, 50, 150, 250 );
+    
+    // problem child :(
+    Mat roi = img(r);
+
+    
+
+    Point p( 10, 9 );
+
+    cout << (r.contains(p) ? "p is in r\n" : "p is not in r\n");
+
+    return 0;
 }
 
 int pixel_intensity(char* file_name)
@@ -85,6 +110,12 @@ int gray_save(int argc, char* argv[])
     
     waitKey(0);
 
+    return 0;
+}
+
+int main(int argc, char* argv[])
+{
+    rect_region(); 
     return 0;
 }
 
