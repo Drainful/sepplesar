@@ -2,9 +2,9 @@
 // CPP program to detects face in a video 
   
 // Include required header files from OpenCV directory 
-#include "/usr/include/opencv2/objdetect/objdetect.hpp" 
-#include "/usr/include/opencv2/highgui/highgui.hpp" 
-#include "/usr/include/opencv2/imgproc/imgproc.hpp" 
+#include "opencv2/objdetect/objdetect.hpp" 
+#include "opencv2/highgui/highgui.hpp" 
+#include "opencv2/imgproc/imgproc.hpp" 
 #include <iostream> 
   
 using namespace std; 
