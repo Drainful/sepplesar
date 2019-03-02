@@ -1,18 +1,21 @@
 cflags=`pkg-config --cflags --libs opencv` -o
 
-build-edges:
+.build-edges:
 	clang++ src/edges/edges.cpp `pkg-config --cflags --libs opencv` -o bin/edges
 
-build-tutorial:
+.build-tutorial:
 	clang++ src/tutorial.cpp `pkg-config --cflags --libs opencv` -o bin/tutorial
 
-build-main:
+.build-main:
 	clang++ src/main.cpp `pkg-config --cflags --libs opencv` -o bin/main
 
-build-faceputter:
+.build-faceputter:
 	clang++ src/faceputter.cpp ${cflags} bin/faceputter
 
-build: build-edges build-tutorial build-main build-faceputter
+build: .build-edges .build-tutorial .build-main .build-faceputter
 
 run:
 	./bin/faceputter
+
+install:
+
