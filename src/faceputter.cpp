@@ -8,9 +8,11 @@
 #include <iostream> 
 
 #include "tutorial.hpp"
+#include "helper.hpp"
 
 using namespace std; 
 using namespace cv; 
+using namespace helper;
   
   
 int main( int argc, const char** argv ) 
@@ -22,10 +24,9 @@ int main( int argc, const char** argv )
     // PreDefined trained XML classifiers with facial features 
     CascadeClassifier cascade;  
     double scale=1; 
-  
                     
     // Change path before execution  
-    cascade.load( string(getenv("OPENCV4"))  + "haarcascades/haarcascade_frontalface_default.xml" ) ;  
+    cascade.load(get_cascade_path("haarcascade_frontalface_default.xml")) ;  
   
     // Start Video..1) 0 for WebCam 2) "Path to Video" for a Local Video 
     capture.open(0);  
