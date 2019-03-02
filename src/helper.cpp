@@ -11,8 +11,8 @@ namespace environment {
 
 namespace helper {
     using namespace environment;
-    char* get_cascade_path(const char* cascade_name)
+    string get_cascade_path(const char* cascade_name)
     {
-        string(environment::opencv_share_path) + "haarcascades/" + cascade_name;
+        return string(environment::opencv_share_path) + "haarcascades/" + cascade_name;
     }
 }

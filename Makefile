@@ -1,4 +1,4 @@
-cflags=`pkg-config --cflags --libs opencv` -o
+cflags=helper.cpp `pkg-config --cflags --libs opencv` -o
 
 .edges:
 	clang++ src/edges/edges.cpp ${cflags} bin/edges
