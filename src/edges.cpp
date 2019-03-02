@@ -35,13 +35,27 @@ int main(int argc, char* argv[])
  */
 void hello_edge(Mat img)
 {
+    const int image_delay = 0 * 1000;
+
+    // gets rid of noise
+    GaussianBlur(img, img, Size(3,3), 0);
+
+    // show original image
     imshow(window_name, img);
-    waitKey(0);
+    waitKey(image_delay);
 
-    Canny(img, img, thresh, 2 * thresh);
+    // the output of canny; the edges of img
+    Mat canny_output;
 
+    // get the edges of img, save to canny_output
+    Canny(img, canny_output, thresh, 2 * thresh); // does like same Mat for input and output
+
+    // show edge image
     namedWindow(window_name);
-    imshow(window_name, img);
-    waitKey(0);
+    imshow(window_name, canny_output);
+    waitKey(image_delay);
+    
+    // writes edges to a file
+    imwrite("src/edges.png", canny_output);
     return;
 }

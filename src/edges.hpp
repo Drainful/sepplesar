@@ -16,7 +16,7 @@ using namespace cv;
 
 // The hysteresis procedure threshold value
 // tbh i'm not quite sure what it does
-const int thresh = 10;
+const int thresh = 40;
 
 // The title of the window when imshow() is called 
 const char* window_name = "Edgey edges";
