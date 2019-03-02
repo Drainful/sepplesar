@@ -56,9 +56,8 @@ int main( int argc, const char** argv )
 void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale) 
 { 
     vector<Rect> faces, faces2; 
-    Mat gray, smallImg;
+    Mat gray, smallImg, laughing;
 
-    Mat laughing;
     Mat mod_laugh;
     laughing = imread("resources/logo.jpg", IMREAD_COLOR);
   
@@ -82,7 +81,7 @@ void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale)
         double aspect_ratio = (double)r.width/r.height; 
         if( 0.75 < aspect_ratio && aspect_ratio < 1.3 ) 
         { 
-            resize(laughing, mod_laugh, r.size(), 1, 1, INTER_LINEAR);
+            resize(laughing, mod_laugh, r.size(), scale, scale, INTER_LINEAR);
             //mod_laugh.copyTo(img(Rect(r.tl(), r.size())));
             //rectangle(img, Point(r.x, r.y), Point(r.x+r.width, r.y+r.height), color, 3, 8, 0);
             // BROKEN FIX
