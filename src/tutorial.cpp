@@ -26,10 +26,10 @@ int main( int argc, const char** argv )
     double scale=1; 
   
     // Load classifiers from "opencv/data/haarcascades" directory  
-    nestedCascade.load( "/home/dc/user/share/haarcascades/haarcascade_eye_tree_eyeglasses.xml" ) ; 
-  
+    nestedCascade.load( "/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml" ) ; 
+                    
     // Change path before execution  
-    cascade.load( "home/dc/user/share/haarcascades/haarcascade_frontalcatface.xml" ) ;  
+    cascade.load( "/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml" ) ;  
   
     // Start Video..1) 0 for WebCam 2) "Path to Video" for a Local Video 
     capture.open(0);  
@@ -41,7 +41,7 @@ int main( int argc, const char** argv )
         { 
             capture >> frame; 
             if( frame.empty() ) 
-                break; 
+                break;
             Mat frame1 = frame.clone(); 
             detectAndDraw( frame1, cascade, nestedCascade, scale );  
             char c = (char)waitKey(10); 
@@ -69,11 +69,9 @@ void detectAndDraw( Mat& img, CascadeClassifier& cascade,
     // Resize the Grayscale Image  
     resize( gray, smallImg, Size(), fx, fx, INTER_LINEAR );  
     equalizeHist( smallImg, smallImg ); 
-  
     // Detect faces of different sizes using cascade classifier  
     cascade.detectMultiScale( smallImg, faces, 1.1,  
                             2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) ); 
-  
     // Draw circles around the faces 
     for ( size_t i = 0; i < faces.size(); i++ ) 
     { 
