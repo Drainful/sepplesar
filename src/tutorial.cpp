@@ -10,7 +10,7 @@
 using namespace std; 
 using namespace cv; 
   
-int main( int argc, const char** argv ) 
+int main(int argc, const char** argv) 
 { 
     // VideoCapture class for playing video for which faces to be detected 
     VideoCapture capture;  
@@ -52,9 +52,9 @@ int main( int argc, const char** argv )
 } 
   
 // Function for Face Detection 
-void detectAndDraw( Mat& img, CascadeClassifier& cascade, 
-                    CascadeClassifier& nestedCascade, 
-                    double scale) 
+void detectAndDraw(Mat& img, CascadeClassifier& cascade, 
+                   CascadeClassifier& nestedCascade, 
+                   double scale) 
 { 
     vector<Rect> faces, faces2; 
     Mat gray, smallImg; 
