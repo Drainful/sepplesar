@@ -16,6 +16,9 @@ using namespace std;
 void detectAndDraw( Mat& img, CascadeClassifier& cascade,  
                 CascadeClassifier& nestedCascade, double scale ); 
 
+// Function for face detection without nested 
+void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale);
+
 String cascadeName;
 String nestedCascadeName; 
 

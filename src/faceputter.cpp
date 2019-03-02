@@ -6,13 +6,12 @@
 #include "opencv2/highgui/highgui.hpp" 
 #include "opencv2/imgproc/imgproc.hpp" 
 #include <iostream> 
-  
+
+#include "tutorial.hpp"
+
 using namespace std; 
 using namespace cv; 
   
-// Function for Face Detection 
-void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale ); 
-string cascadeName, nestedCascadeName; 
   
 int main( int argc, const char** argv ) 
 { 
@@ -34,13 +33,27 @@ int main( int argc, const char** argv )
     { 
         // Capture frames from video and detect faces 
         cout << "Face Detection Started...." << endl; 
+        int frame_num = 0;
+        Mat frame1;
         while(1) 
         { 
+            frame_num = (frame_num +1)%50;
             capture >> frame; 
+            
             if( frame.empty() ) 
                 break;
-            Mat frame1 = frame.clone(); 
+
+            if( frame_num == 0)
+            {
+                imshow("Face paste", frame);
+                continue;
+            }
+
+            GaussianBlur(frame, frame1, Size(3,3), 0);
+            //frame1 = frame.clone(); 
+            //resize(frame, frame1, frame.size(), 1, 1, INTER_LINEAR);
             detectAndDraw( frame1, cascade, scale );  
+            //imshow("", frame1);
             char c = (char)waitKey(10); 
           
             // Press q to exit from window 
@@ -56,10 +69,10 @@ int main( int argc, const char** argv )
 void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale) 
 { 
     vector<Rect> faces, faces2; 
-    Mat gray, smallImg, laughing;
+    Mat gray, smallImg, mask_img, mod_mask;
 
-    Mat mod_laugh;
-    laughing = imread("resources/logo.jpg", IMREAD_COLOR);
+    const string mask_file_name = "resources/haha.png";
+    mask_img = imread(mask_file_name, IMREAD_UNCHANGED);
   
     cvtColor( img, gray, COLOR_BGR2GRAY ); // Convert to Gray Scale 
     double fx = 1 / scale; 
@@ -70,7 +83,7 @@ void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale)
     // Detect faces of different sizes using cascade classifier  
     cascade.detectMultiScale( smallImg, faces, 1.1,  
                             2, 0|CASCADE_SCALE_IMAGE, Size(30, 30) ); 
-    // Draw circles around the faces 
+    // Draw circles around the faces
     for ( size_t i = 0; i < faces.size(); i++ ) 
     { 
         Rect r = faces[i];
@@ -81,11 +94,9 @@ void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale)
         double aspect_ratio = (double)r.width/r.height; 
         if( 0.75 < aspect_ratio && aspect_ratio < 1.3 ) 
         { 
-            resize(laughing, mod_laugh, r.size(), scale, scale, INTER_LINEAR);
-            //mod_laugh.copyTo(img(Rect(r.tl(), r.size())));
+            resize(mask_img, mod_mask, r.size(), scale, scale, INTER_LINEAR);
+            mod_mask.copyTo(img(Rect(r.tl(), r.size())));
             //rectangle(img, Point(r.x, r.y), Point(r.x+r.width, r.y+r.height), color, 3, 8, 0);
-            // BROKEN FIX
-            mod_laugh.copyTo(img(Rect(r.size(), mod_laugh.size())));
         } 
         else
             rectangle( img, cvPoint(cvRound(r.x*scale), cvRound(r.y*scale)), 
@@ -94,6 +105,6 @@ void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale)
     } 
   
     // Show Processed Image with detected faces 
-    imshow( "Face Detection", img );  
+    imshow( "Face paste", img );  
 } 
 
