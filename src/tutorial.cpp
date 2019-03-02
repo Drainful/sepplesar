@@ -2,20 +2,15 @@
 // CPP program to detects face in a video 
   
 // Include required header files from OpenCV directory 
-#include "/usr/include/opencv2/objdetect/objdetect.hpp" 
-#include "/usr/include/opencv2/highgui/highgui.hpp" 
-#include "/usr/include/opencv2/imgproc/imgproc.hpp" 
+#include "opencv2/objdetect/objdetect.hpp" 
+#include "opencv2/highgui/highgui.hpp" 
+#include "opencv2/imgproc/imgproc.hpp" 
 #include <iostream> 
   
 using namespace std; 
 using namespace cv; 
   
-// Function for Face Detection 
-void detectAndDraw( Mat& img, CascadeClassifier& cascade,  
-                CascadeClassifier& nestedCascade, double scale ); 
-string cascadeName, nestedCascadeName; 
-  
-int main( int argc, const char** argv ) 
+int main(int argc, const char** argv) 
 { 
     // VideoCapture class for playing video for which faces to be detected 
     VideoCapture capture;  
@@ -56,9 +51,10 @@ int main( int argc, const char** argv )
     return 0; 
 } 
   
-void detectAndDraw( Mat& img, CascadeClassifier& cascade, 
-                    CascadeClassifier& nestedCascade, 
-                    double scale) 
+// Function for Face Detection 
+void detectAndDraw(Mat& img, CascadeClassifier& cascade, 
+                   CascadeClassifier& nestedCascade, 
+                   double scale) 
 { 
     vector<Rect> faces, faces2; 
     Mat gray, smallImg; 
