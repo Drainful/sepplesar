@@ -85,6 +85,7 @@ void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale)
             resize(laughing, mod_laugh, r.size(), 1, 1, INTER_LINEAR);
             //mod_laugh.copyTo(img(Rect(r.tl(), r.size())));
             //rectangle(img, Point(r.x, r.y), Point(r.x+r.width, r.y+r.height), color, 3, 8, 0);
+            // BROKEN FIX
             mod_laugh.copyTo(img(Rect(r.size(), mod_laugh.size())));
         } 
         else
