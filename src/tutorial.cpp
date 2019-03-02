@@ -6,7 +6,9 @@
 #include "opencv2/highgui/highgui.hpp" 
 #include "opencv2/imgproc/imgproc.hpp" 
 #include <iostream> 
-  
+ 
+#include "tutorial.hpp"
+
 using namespace std; 
 using namespace cv; 
   

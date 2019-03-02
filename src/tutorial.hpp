@@ -1,3 +1,7 @@
+/*
+ *
+ */
+
 #ifndef TUTORIAL
 #define TUTORIAL
 
@@ -6,11 +10,13 @@
 #include "opencv2/imgproc/imgproc.hpp" 
 
 using namespace cv; 
+using namespace std;
 
 // Function for Face Detection 
 void detectAndDraw( Mat& img, CascadeClassifier& cascade,  
                 CascadeClassifier& nestedCascade, double scale ); 
 
-string cascadeName, nestedCascadeName; 
+String cascadeName;
+String nestedCascadeName; 
 
 #endif
