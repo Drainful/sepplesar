@@ -18,6 +18,7 @@ in {
 
       pkgconfig
     ];
+		OPENCV4 = "${opencv4-override}/share/";
   };
 }
 
