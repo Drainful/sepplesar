@@ -21,8 +21,24 @@ string get_cascade_path(const char* cascade_name)
     return string(opencv_share_path) + "haarcascades/" + cascade_name;
 }
   
-int main( int argc, const char** argv ) 
-{ 
+int main( int argc, char* argv[] ) 
+{
+    if(argc != 2)
+    {
+        cerr << "Usage ./faceputter FILENAME";
+        return -1;
+    }
+
+    char* file_name = argv[1];
+    Mat mask_image = imread(argv[1], IMREAD_UNCHANGED);
+
+    if(!mask_image.data)
+    {
+        cerr << "Invalid image. Wrong name of image or unsupported file type.\n";
+        return -1;
+    }
+    
+
     // VideoCapture class for playing video for which faces to be detected 
     VideoCapture capture;  
     Mat frame, image; 
@@ -56,10 +72,10 @@ int main( int argc, const char** argv )
                 continue;
             }
 
-            GaussianBlur(frame, frame1, Size(3,3), 0);
+            GaussianBlur(frame, frame1, Size(5,5), 0);
             //frame1 = frame.clone(); 
             //resize(frame, frame1, frame.size(), 1, 1, INTER_LINEAR);
-            detectAndDraw( frame1, cascade, scale );  
+            detectAndDraw(frame1, mask_image, cascade, scale);  
             //imshow("", frame1);
             char c = (char)waitKey(10); 
           
@@ -73,13 +89,12 @@ int main( int argc, const char** argv )
     return 0; 
 } 
   
-void detectAndDraw( Mat& img, CascadeClassifier& cascade, double scale) 
+void detectAndDraw(Mat& img, Mat& mask_img, CascadeClassifier& cascade, double scale) 
 { 
     vector<Rect> faces, faces2; 
-    Mat gray, smallImg, mask_img, mod_mask;
+    Mat gray, smallImg, mod_mask;
 
-    const string mask_file_name = "resources/haha.png";
-    mask_img = imread(mask_file_name, IMREAD_UNCHANGED);
+    cout << "MASK channels: " << mask_img.channels() << endl;
   
     cvtColor( img, gray, COLOR_BGR2GRAY ); // Convert to Gray Scale 
     double fx = 1 / scale; 
