@@ -8,12 +8,18 @@
 #include <iostream> 
 
 #include "tutorial.hpp"
-#include "helper.hpp"
 
 using namespace std; 
 using namespace cv; 
-using namespace helper;
-  
+
+
+const char* opencv_share_path = getenv("OPENCV4");
+
+string get_cascade_path(const char* cascade_name)
+{
+    cout << "TEST:" << string(opencv_share_path) << endl;
+    return string(opencv_share_path) + "haarcascades/" + cascade_name;
+}
   
 int main( int argc, const char** argv ) 
 { 

@@ -5,14 +5,10 @@
 using namespace std;
 using namespace cv;
 
-namespace environment {
-    const char* opencv_share_path = getenv("OPENCV4");
+const char* opencv_share_path = getenv("OPENCV4");
+
+string get_cascade_path(const char* cascade_name)
+{
+    return string(opencv_share_path) + "haarcascades/" + cascade_name;
 }
 
-namespace helper {
-    using namespace environment;
-    string get_cascade_path(const char* cascade_name)
-    {
-        return string(environment::opencv_share_path) + "haarcascades/" + cascade_name;
-    }
-}
